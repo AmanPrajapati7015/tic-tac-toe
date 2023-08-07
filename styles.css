@@ -1,0 +1,19 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+div.game-grid{
+    display: grid;
+    margin: 200px auto;
+    width: min-content;
+    grid-template-columns: repeat(3, 80px);
+    grid-template-rows: repeat(3, 80px);
+    border: 1px solid black;
+}
+
+
+
+.game-grid > div{
+    border: 1px solid black;
+}
