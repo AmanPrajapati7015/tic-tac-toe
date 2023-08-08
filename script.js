@@ -21,10 +21,14 @@ let GameBoard = (function (){
             if (!!gameBoard[i] && gameBoard[i] == gameBoard[i+3] && gameBoard[i+3]  == gameBoard[i+6] ){
                 return {winner:gameBoard[i], index:[i, i+3, i+6]}
             }
-            else if (!!gameBoard[i] && gameBoard[i] == gameBoard[i+1]&& gameBoard[i+1] == gameBoard[i+2]){
+        }
+
+        for (let i in [0, 3, 6]){
+            if (!!gameBoard[i] && gameBoard[i] == gameBoard[i+1]&& gameBoard[i+1] == gameBoard[i+2]){
                 return {winner : gameBoard[i], index:[i, i+1, i+2]}
             }
         }
+
         if (!!gameBoard[0] && gameBoard[0] == gameBoard[4] &&gameBoard[4]  == gameBoard[8]){
             return {winner: gameBoard[2], index:[0,4,8]}
         }
@@ -50,6 +54,12 @@ let GameBoard = (function (){
 
             if (won){
                 console.log(won)
+                if (won.winner!= "tie"){
+                    alert(`player ${won.winner} has won`)
+                }
+                else{
+                    alert('match has tied')
+                }
             }
 
         }
