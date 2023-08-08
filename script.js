@@ -8,26 +8,57 @@ let Player2 = Player("Shiwani", "o");
 
 
 
+let gameBoard = [ null, null, null, null, null, null, null, null, null ]
 let GameBoard = (function (){
-    let gameBoard = [ null, null, null, null, null, null, null, null, null ]
 
     let currentPlayer = Player1;
     function switchPlayer(){
         currentPlayer = (currentPlayer==Player1) ? Player2 : Player1
     }
 
+    function checkWon(){
+        for (let i = 0; i <3; i++){
+            if (!!gameBoard[i] && gameBoard[i] == gameBoard[i+3] && gameBoard[i+3]  == gameBoard[i+6] ){
+                return {winner:gameBoard[i], index:[i, i+3, i+6]}
+            }
+            else if (!!gameBoard[i] && gameBoard[i] == gameBoard[i+1]&& gameBoard[i+1] == gameBoard[i+2]){
+                return {winner : gameBoard[i], index:[i, i+1, i+2]}
+            }
+        }
+        if (!!gameBoard[0] && gameBoard[0] == gameBoard[4] &&gameBoard[4]  == gameBoard[8]){
+            return {winner: gameBoard[2], index:[0,4,8]}
+        }
+        else if (!!gameBoard[2] && gameBoard[2] == gameBoard[4] && gameBoard[4]== gameBoard[6]){
+            return {winner: gameBoard[2], index:[2,4,6]}
+        }
+    
+        if (gameBoard.every(value => value != null)){
+            return {winner:"tie", index:[]}
+        }
+    }
+
+
+
     function play(e){
         let cellDiv =  e.target
         dataIndex = +cellDiv.getAttribute("data-index")
         if (!gameBoard[dataIndex]){
             gameBoard[dataIndex] = currentPlayer.marker;
-            cellDiv.textContent = currentPlayer.marker
-            switchPlayer()
+            cellDiv.textContent = currentPlayer.marker;
+            let won = checkWon();
+            switchPlayer();
+
+            if (won){
+                console.log(won)
+            }
+
         }
         else{
             alert("you can't change a filled cell")
         }
     }
+
+
 
 
     let displayBoard = function(){
@@ -40,7 +71,7 @@ let GameBoard = (function (){
 
 
 
-    return {displayBoard}
+    return {displayBoard, }
 })();
 
 GameBoard.displayBoard()
