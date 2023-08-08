@@ -23,7 +23,7 @@ let GameBoard = (function (){
             }
         }
 
-        for (let i in [0, 3, 6]){
+        for (let i = 0; i<7; i +=3){
             if (!!gameBoard[i] && gameBoard[i] == gameBoard[i+1]&& gameBoard[i+1] == gameBoard[i+2]){
                 return {winner : gameBoard[i], index:[i, i+1, i+2]}
             }

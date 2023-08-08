@@ -17,7 +17,7 @@ div.game-grid{
 .game-grid > div{
     border: 1px solid black;
     text-align: center;
-    padding-top: 30px;
+    font-size: 2rem;
 }
 
 
