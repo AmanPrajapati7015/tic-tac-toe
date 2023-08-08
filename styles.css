@@ -19,3 +19,8 @@ div.game-grid{
     text-align: center;
     padding-top: 30px;
 }
+
+
+.game-grid > div.highlight{
+    background-color: aquamarine;
+}

@@ -8,8 +8,8 @@ let Player2 = Player("Shiwani", "o");
 
 
 
-let gameBoard = [ null, null, null, null, null, null, null, null, null ]
 let GameBoard = (function (){
+    let gameBoard = [null, null, null, null, null, null, null, null, null] 
 
     let currentPlayer = Player1;
     function switchPlayer(){
@@ -41,6 +41,12 @@ let GameBoard = (function (){
         }
     }
 
+    function highlight(index){
+        for (let i in index){
+            let cell = document.querySelector(`.grid-${index[i]+1}`);
+            cell.classList.add('highlight');
+        }
+    }
 
 
     function play(e){
@@ -49,19 +55,18 @@ let GameBoard = (function (){
         if (!gameBoard[dataIndex]){
             gameBoard[dataIndex] = currentPlayer.marker;
             cellDiv.textContent = currentPlayer.marker;
-            let won = checkWon();
             switchPlayer();
-
+            
+            let won = checkWon();
             if (won){
-                console.log(won)
                 if (won.winner!= "tie"){
+                    highlight(won.index)
                     alert(`player ${won.winner} has won`)
                 }
                 else{
                     alert('match has tied')
                 }
             }
-
         }
         else{
             alert("you can't change a filled cell")
@@ -74,7 +79,7 @@ let GameBoard = (function (){
     let displayBoard = function(){
         for (let i = 0; i<gameBoard.length; i++){
             let cellDiv = document.querySelector(`.grid-${i+1}`);
-            cellDiv.addEventListener("click", play)
+            cellDiv.addEventListener("click", play);
             cellDiv.textContent = gameBoard[i];
         }
     }
