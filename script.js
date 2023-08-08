@@ -76,17 +76,20 @@ let GameBoard = (function (){
 
 
 
-    (function(){
+    let displayBoard = function(){
         for (let i = 0; i<gameBoard.length; i++){
             let cellDiv = document.querySelector(`.grid-${i+1}`);
             cellDiv.addEventListener("click", play);
+            cellDiv.textContent = gameBoard[i];
         }
-    })();
+    }
 
 
 
+    return {displayBoard, }
 })();
 
+GameBoard.displayBoard()
 
 
 
