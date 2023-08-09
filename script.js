@@ -16,8 +16,15 @@ let GameBoard = (function (){
         currentPlayer = (currentPlayer==Player1) ? Player2 : Player1
     }
 
-    function updateNextPlayer(div){
-        div.textContent = `${currentPlayer.name}'s (${currentPlayer.marker}) turn `
+    let turnDisplay = document.querySelector(".turn-display");
+    function updateNextPlayer(){
+        turnDisplay.textContent = `${currentPlayer.name}'s (${currentPlayer.marker}) turn `
+    }
+
+    let winnerDisplay = document.querySelector(".cong");
+    function displayWinner(msg){
+        winnerDisplay.textContent = msg;
+        console.log("display winner called")
     }
 
     function checkWon(){
@@ -52,8 +59,8 @@ let GameBoard = (function (){
         }
     }
 
-    let turnDisplay = document.querySelector(".turn-display");
-    updateNextPlayer(turnDisplay)
+    
+    updateNextPlayer()
 
     function play(e){
         let cellDiv =  e.target
@@ -62,16 +69,17 @@ let GameBoard = (function (){
             gameBoard[dataIndex] = currentPlayer.marker;
             cellDiv.textContent = currentPlayer.marker;
             switchPlayer();
-            updateNextPlayer(turnDisplay);
+            updateNextPlayer();
             
             let won = checkWon();
             if (won){
                 if (won.winner!= "tie"){
-                    highlight(won.index)
-                    alert(`player ${won.winner} has won`)
+                    highlight(won.index);
+                    let wonPlayer = (won.winner == Player1.marker) ? Player1 : Player2 ;
+                    displayWinner(`player ${wonPlayer.name} (${wonPlayer.marker}) has won`);
                 }
                 else{
-                    alert('match has tied')
+                    displayWinner('match has tied')
                 }
             }
         }
@@ -82,8 +90,9 @@ let GameBoard = (function (){
 
 
 
-    let displayBoard = function(){
+    let displayBoard = function(){                     // also reset our whole game
         gameBoard = [null, null, null, null, null, null, null, null, null];
+        displayWinner("");
         for (let i = 0; i<gameBoard.length; i++){
             let cellDiv = document.querySelector(`.grid-${i+1}`);
             cellDiv.addEventListener("click", play);
@@ -96,8 +105,8 @@ let GameBoard = (function (){
 
     return {displayBoard, gameBoard}
 })();
-
 GameBoard.displayBoard()
+
 
 
 let resetBtn = document.querySelector("button.reset");
