@@ -2,8 +2,8 @@ let Player = function(name, marker){
     return {name, marker}
 }
 
-let Player1 = Player("Player 1", "x");
-let Player2 = Player("Player 2", "o");
+let Player1 = Player(prompt("player 1's name (x)"), "x");
+let Player2 = Player(prompt("player 2's name (0)"), "o");
 
 
 
@@ -79,7 +79,6 @@ let GameBoard = (function (){
             alert("you can't change a filled cell")
         }
     }
-
 
 
 
