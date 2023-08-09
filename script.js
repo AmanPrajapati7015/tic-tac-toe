@@ -2,8 +2,8 @@ let Player = function(name, marker){
     return {name, marker}
 }
 
-let Player1 = Player("Aman", "x");
-let Player2 = Player("Shiwani", "o");
+let Player1 = Player("Player 1", "x");
+let Player2 = Player("Player 2", "o");
 
 
 
@@ -14,6 +14,10 @@ let GameBoard = (function (){
     let currentPlayer = Player1;
     function switchPlayer(){
         currentPlayer = (currentPlayer==Player1) ? Player2 : Player1
+    }
+
+    function updateNextPlayer(div){
+        div.textContent = `${currentPlayer.name}'s (${currentPlayer.marker}) turn `
     }
 
     function checkWon(){
@@ -48,6 +52,8 @@ let GameBoard = (function (){
         }
     }
 
+    let turnDisplay = document.querySelector(".turn-display");
+    updateNextPlayer(turnDisplay)
 
     function play(e){
         let cellDiv =  e.target
@@ -56,6 +62,7 @@ let GameBoard = (function (){
             gameBoard[dataIndex] = currentPlayer.marker;
             cellDiv.textContent = currentPlayer.marker;
             switchPlayer();
+            updateNextPlayer(turnDisplay);
             
             let won = checkWon();
             if (won){
