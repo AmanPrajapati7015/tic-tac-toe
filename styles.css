@@ -39,3 +39,21 @@ div.game-grid{
 .game-grid > div.highlight{
     background-color: aquamarine;
 }
+
+
+button.reset{
+    display: block;
+    margin: 50px auto;
+    font-size: 1.2rem;
+    padding: 5px 25px;
+    border: 1px solid rgb(255, 65, 65);
+    color : rgb(255, 65, 65);
+    background-color: white;
+    border-radius: 5px;
+    font-family: 700;
+}
+
+button.reset:hover{
+    background-color: rgb(255, 65, 65);
+    color: white;
+}

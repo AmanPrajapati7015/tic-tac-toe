@@ -9,7 +9,7 @@ let Player2 = Player("Player 2", "o");
 
 
 let GameBoard = (function (){
-    let gameBoard = [null, null, null, null, null, null, null, null, null] 
+    let gameBoard = [null, null, null, null, null, null, null, null, null]; 
 
     let currentPlayer = Player1;
     function switchPlayer(){
@@ -84,20 +84,28 @@ let GameBoard = (function (){
 
 
     let displayBoard = function(){
+        gameBoard = [null, null, null, null, null, null, null, null, null];
         for (let i = 0; i<gameBoard.length; i++){
             let cellDiv = document.querySelector(`.grid-${i+1}`);
             cellDiv.addEventListener("click", play);
+            cellDiv.classList.remove("highlight")
             cellDiv.textContent = gameBoard[i];
         }
     }
 
 
 
-    return {displayBoard, }
+    return {displayBoard, gameBoard}
 })();
 
 GameBoard.displayBoard()
 
+
+let resetBtn = document.querySelector("button.reset");
+resetBtn.addEventListener("click", reset)
+function reset(){
+    GameBoard.displayBoard();
+}
 
 
 
