@@ -41,6 +41,14 @@ div.game-grid{
 }
 
 
+div.cong{
+    text-align: center;
+    margin: 50px;
+    font-size: 1.2rem;
+}
+
+
+
 button.reset{
     display: block;
     margin: 50px auto;
@@ -57,3 +65,5 @@ button.reset:hover{
     background-color: rgb(255, 65, 65);
     color: white;
 }
+
+

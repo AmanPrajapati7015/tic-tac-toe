@@ -34,10 +34,10 @@ let GameBoard = (function (){
         }
 
         if (!!gameBoard[0] && gameBoard[0] == gameBoard[4] &&gameBoard[4]  == gameBoard[8]){
-            return {winner: gameBoard[2], index:[0,4,8]}
+            return {winner: gameBoard[4], index:[0,4,8]}
         }
         else if (!!gameBoard[2] && gameBoard[2] == gameBoard[4] && gameBoard[4]== gameBoard[6]){
-            return {winner: gameBoard[2], index:[2,4,6]}
+            return {winner: gameBoard[4], index:[2,4,6]}
         }
     
         if (gameBoard.every(value => value != null)){
