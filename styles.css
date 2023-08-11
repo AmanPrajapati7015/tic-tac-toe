@@ -3,6 +3,11 @@
     margin: 0;
 }
 
+body{
+    background-color: #D5FFE4;
+    color: #6F61C0;
+}
+
 div.heading{
     margin: 50px 0;
     text-align: center;
@@ -21,23 +26,27 @@ div.game-grid{
     display: grid;
     margin:  auto;
     width: min-content;
-    grid-template-columns: repeat(3, 80px);
-    grid-template-rows: repeat(3, 80px);
-    border: 1px solid black;
+    grid-template-columns: repeat(3, 90px);
+    grid-template-rows: repeat(3, 90px);
+    gap: 20px;
+    /* border: 1px solid black; */
 }
 
 
 
 .game-grid > div{
-    border: 1px solid black;
+    /* border: 1px solid black; */
+    /* margin:30px; */
+    background-color: #8BE8E5;
+    border-radius: 10px;
     text-align: center;
-    padding-top: 20px ;
-    font-size: 2rem;
+    padding-top: 15px ;
+    font-size: 3rem;
 }
 
 
 .game-grid > div.highlight{
-    background-color: aquamarine;
+    background-color: #A084E8;
 }
 
 
@@ -45,7 +54,7 @@ div.cong{
     text-align: center;
     margin: 50px;
     font-size: 1.2rem;
-    color: rgb(16, 95, 16);
+    color: #6F61C0;
     font-weight: 700;
 }
 
@@ -56,16 +65,16 @@ button.reset{
     margin: 50px auto;
     font-size: 1.2rem;
     padding: 5px 25px;
-    border: 1px solid rgb(255, 65, 65);
-    color : rgb(255, 65, 65);
-    background-color: white;
+    border: 1px solid #6F61C0;
+    color : #6F61C0;
+    background-color: #D5FFE4;
     border-radius: 5px;
     font-family: 700;
 }
 
 button.reset:hover{
-    background-color: rgb(255, 65, 65);
-    color: white;
+    background-color: #6F61C0;
+    color: #D5FFE4;
 }
 
 

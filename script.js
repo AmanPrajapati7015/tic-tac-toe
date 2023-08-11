@@ -76,10 +76,10 @@ let GameBoard = (function (){
                 if (won.winner!= "tie"){
                     highlight(won.index);
                     let wonPlayer = (won.winner == Player1.marker) ? Player1 : Player2 ;
-                    displayWinner(`player ${wonPlayer.name} (${wonPlayer.marker}) has won`);
+                    displayWinner(`Player ${wonPlayer.name} (${wonPlayer.marker}) has won.`);
                 }
                 else{
-                    displayWinner('match has tied')
+                    displayWinner('Match has tied.')
                 }
             }
         }
