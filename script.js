@@ -3,7 +3,7 @@ let Player = function(name, marker){
 }
 
 let Player1 = Player(prompt("player 1's name (x)"), "x");
-let Player2 = Player(prompt("player 2's name (0)"), "o");
+let Player2 = Player("AI", "o");
 
 
 
@@ -11,20 +11,9 @@ let Player2 = Player(prompt("player 2's name (0)"), "o");
 let GameBoard = (function (){
     let gameBoard = [null, null, null, null, null, null, null, null, null]; 
 
-    let currentPlayer = Player1;
-    function switchPlayer(){
-        currentPlayer = (currentPlayer==Player1) ? Player2 : Player1
-    }
-
-    let turnDisplay = document.querySelector(".turn-display");
-    function updateNextPlayer(){
-        turnDisplay.textContent = `${currentPlayer.name}'s (${currentPlayer.marker}) turn `
-    }
-
     let winnerDisplay = document.querySelector(".cong");
     function displayWinner(msg){
         winnerDisplay.textContent = msg;
-        console.log("display winner called")
     }
 
     function checkWon(){
@@ -59,17 +48,28 @@ let GameBoard = (function (){
         }
     }
 
-    
-    updateNextPlayer()
+    function playRandom(){
+        let empty_cells = [];     //checking all possible moves for AI
+        for (let i =0 ; i<9; i++){
+            if (!gameBoard[i]) {
+                empty_cells.push(i);
+            }
+        } 
+        //pick an random available spot 
+        let AIcell = empty_cells[Math.floor(Math.random()*empty_cells.length)];
+        //playing AI move
+        gameBoard[AIcell] = Player2.marker;
+        let AIcellDiv = document.querySelector(`div[data-index="${AIcell}"]`);
+        AIcellDiv.textContent = Player2.marker;
+    }
 
     function play(e){
         let cellDiv =  e.target
         dataIndex = +cellDiv.getAttribute("data-index")
         if (!gameBoard[dataIndex]){
-            gameBoard[dataIndex] = currentPlayer.marker;
-            cellDiv.textContent = currentPlayer.marker;
-            switchPlayer();
-            updateNextPlayer();
+            gameBoard[dataIndex] = Player1.marker;
+            cellDiv.textContent = Player1.marker;
+            playRandom();
             
             let won = checkWon();
             if (won){
